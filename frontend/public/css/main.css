@@ -1,0 +1,174 @@
+@font-face {
+    font-family: 'lato-regular';
+    src: url('../fonts/Lato/Lato-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'lato-bold';
+    src: url('../fonts/Lato/Lato-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    outline: none !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+html,
+body {
+    font-family: 'lato-regular', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+}
+
+.loader-forms {
+    display: none;
+}
+
+.loader-forms.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(52, 61, 70, 0.6);
+    z-index: 9999999999;
+}
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+    border-style: solid;
+    border-image: initial;
+    border-radius: 50%;
+    animation: 1.2s cubic-bezier(0.5, 0, 0.5, 1) 0s infinite normal none running lds-ring;
+    border-color: white transparent transparent;
+}
+
+.lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+.logo {
+    display: block;
+    margin-top: 50px;
+}
+
+.page-wrapper.dashboard {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.page-wrapper .top {
+    padding: 50px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.weather-data-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    margin: 100px 0;
+    padding: 0 20px;
+}
+
+.weather-data-wrapper .weather {
+    text-align: center;
+    background-color: rgba(128, 128, 128, 0.5);
+    padding: 15px;
+    border-radius: 20px;
+    font-family: 'lato-regular', Arial, Helvetica, sans-serif;
+}
+
+.weather-data-wrapper .weather p {
+    margin-bottom: 10px;
+}
+
+.logout, .register {
+    text-decoration: none;
+    color: royalblue;
+    font-family: 'lato-bold', Arial, Helvetica, sans-serif;
+}
+
+.page-wrapper.login {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input {
+    display: block;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+button {
+    border-radius: 10px;
+    background-color: black;
+    padding: 8px 8px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    margin: 10px 0;
+}
+
+.have-account, .no-account {
+    margin-bottom: 30px;
+}
+
+@keyframes lds-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
