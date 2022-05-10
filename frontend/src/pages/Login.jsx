@@ -49,8 +49,7 @@ export default function Login() {
                 )
             }
             <div className="top">
-                <h1>login</h1>
-                <p>Login to your account.</p>
+                <h1>Login</h1>
             </div>
 
             <h1 className="no-account">Don't have an account? <Link to="/register" className="register">Register</Link></h1>

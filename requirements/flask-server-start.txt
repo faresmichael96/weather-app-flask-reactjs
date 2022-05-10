@@ -1,0 +1,43 @@
+cd backend
+source ./Scripts/activate
+
+export FLASK_ENV=development
+
+python app.py
+
+
+
+
+
+
+# try:
+#     con = psycopg2.connect(
+#         database=DATABASE,
+#         user=DATABASE_USERNAME,
+#         password=DATABASE_PASSWORD)
+
+#     cur = con.cursor()
+
+#     # GET: Fetch all users from the database
+#     @app.route('/')
+#     def fetch_all_users():
+#         cur.execute('SELECT * FROM users')
+#         rows = cur.fetchall()
+#         print(rows)
+
+#         return jsonify(rows)
+# except:
+#     print('Error')
+
+
+
+
+
+
+# @app.route('/')
+# def index():
+#     conn = get_db_connection()
+#     cur = conn.cursor()
+#     cur.execute('SELECT * FROM users;')
+#     users = cur.fetchall()
+#     return {'users': users}

@@ -15,19 +15,18 @@ export default function App() {
   const [authenticatedUser, setAuthenticatedUser] = useState();
 
   useEffect(() => {
-    if (localStorage.getItem('auth_token')) {
-      axios.defaults.headers.common['Authorization'] = localStorage.getItem('auth_token');
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = token;
 
       axios({
         url: '/user',
         method: 'get',
       })
         .then(res => {
-          console.log(res.data)
           setAuthenticatedUser(res.data)
         })
         .catch(res => {
-          console.log(res.response)
         })
     }
   }, []);
@@ -38,7 +37,7 @@ export default function App() {
   }
 
   return (
-    <GlobalState.Provider value={{authenticatedUser, setAuthenticatedUser}}>
+    <GlobalState.Provider value={{ authenticatedUser, setAuthenticatedUser }}>
       <BrowserRouter>
         <ScrollToTop />
         <Routes>

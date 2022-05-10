@@ -89,10 +89,25 @@ body {
     margin-top: 50px;
 }
 
-.page-wrapper.dashboard {
+.page-wrapper {
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
+}
+
+.page-wrapper.home {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.page-wrapper.home h1 {
+    font-family: 'lato-bold', Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    margin-bottom: 50px;
+}
+
+.page-wrapper.home h2 {
+    font-size: 40px;
 }
 
 .page-wrapper .top {
@@ -100,6 +115,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.page-wrapper .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.page-wrapper .actions .btn {
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 6px 10px;
+    margin: 0 20px;
+    color: black;
 }
 
 .weather-data-wrapper {
@@ -122,7 +152,9 @@ body {
     margin-bottom: 10px;
 }
 
-.logout, .register {
+.logout,
+.register,
+h1 .login {
     text-decoration: none;
     color: royalblue;
     font-family: 'lato-bold', Arial, Helvetica, sans-serif;
@@ -135,14 +167,15 @@ body {
     text-align: center;
 }
 
-input {
+input, select {
     display: block;
     width: 100%;
     max-width: 250px;
     margin: 0 auto;
     margin-bottom: 20px;
     padding: 8px 20px;
-    border-radius: 20px;
+    border-radius: 5px;
+    border-width: 1px;
 }
 
 button {
@@ -159,7 +192,8 @@ button {
     margin: 10px 0;
 }
 
-.have-account, .no-account {
+.have-account,
+.no-account {
     margin-bottom: 30px;
 }
 

@@ -24,6 +24,16 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+class Countries(db.Model):
+    __tablename__ = 'countries'
+    id = db.Column(db.Integer, primary_key=True)
+    iso = db.Column(db.CHAR(2), nullable=False)
+    name = db.Column(db.String(150), nullable=False)
+    nicename = db.Column(db.String(150), nullable=False)
+    iso3 = db.Column(db.CHAR(3), nullable=True)
+    numcode = db.Column(db.SMALLINT, nullable=True)
+    phonecode = db.Column(db.Integer, nullable=False)
+
 def init_db():
     db.create_all()
 

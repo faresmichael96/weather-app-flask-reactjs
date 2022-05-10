@@ -22,13 +22,11 @@ export default function Dashboard() {
             method: 'get',
         })
             .then(res => {
-                console.log(res.data)
                 setWeatherData(res.data)
                 setLoading(false)
             })
             .catch(res => {
                 setLoading(false)
-                console.log(res.response)
             })
     }, []);
 
@@ -41,6 +39,7 @@ export default function Dashboard() {
                             <h1>Dashboard, Welcome {authenticatedUser?.name}</h1>
                             <Link to="/login" className="logout" onClick={logout} >Logout</Link>
                         </div>
+                        <h2 style={{padding: '0 20px'}}>Weather in {authenticatedUser?.country}</h2>
 
                         <div className="weather-data-wrapper">
                             {
@@ -49,8 +48,6 @@ export default function Dashboard() {
                                         <img src={weatherData?.yesterdayWeather.forecast.forecastday[0].day.condition.icon} />
                                         <p>Temprature in Celsius: {weatherData?.yesterdayWeather.forecast.forecastday[0].day.avgtemp_c}</p>
                                         <p>Wind Speed: {weatherData?.yesterdayWeather.forecast.forecastday[0].day.maxwind_kph}</p>
-                                        <p>Date: {weatherData?.yesterdayWeather.location.localtime}</p>
-
                                     </div>
                                     :
                                     null
@@ -60,9 +57,7 @@ export default function Dashboard() {
                                     <div className="weather">
                                         <img src={weatherData?.todayWeather.current.condition.icon} />
                                         <p>Temprature in Celsius: {weatherData?.todayWeather.current.temp_c}</p>
-                                        <p>Wind Speed: {weatherData?.todayWeather.current.wind_kph}</p>
-                                        <p>Date: {weatherData?.todayWeather.location.localtime}</p>
-                                    </div>
+                                        <p>Wind Speed: {weatherData?.todayWeather.current.wind_kph}</p>                                    </div>
                                     :
                                     null
                             }
@@ -72,8 +67,6 @@ export default function Dashboard() {
                                         <img src={weatherData?.tomorrowWeather.forecast.forecastday[0].day.condition.icon} />
                                         <p>Temprature in Celsius: {weatherData?.tomorrowWeather.forecast.forecastday[0].day.avgtemp_c}</p>
                                         <p>Wind Speed: {weatherData?.tomorrowWeather.forecast.forecastday[0].day.maxwind_kph}</p>
-                                        <p>Date: {weatherData?.tomorrowWeather.location.localtime}</p>
-
                                     </div>
                                     :
                                     null

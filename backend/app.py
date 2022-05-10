@@ -17,13 +17,6 @@ load_dotenv()
 
 weather_api_base_url = "http://api.weatherapi.com/v1"
 
-# PostgreSQL Database credentials loaded from the .env file
-# DATABASE = os.getenv('DATABASE')
-# DATABASE_USERNAME = os.getenv('DATABASE_USERNAME')
-# DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD')
-
-# SECRET_KEY = os.getenv('SECRET_KEY')
-
 app = Flask(__name__)
 
 SQLALCHEMY_DATABASE_URI = "postgresql://{username}:{password}@{hostname}/{databasename}".format(
@@ -49,21 +42,37 @@ db.app = app
 cors = CORS(app, supports_credentials=True)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+# Register a callback function that takes whatever object is passed in as the
+# identity when creating JWTs and converts it to a JSON serializable format.
 @jwt.user_identity_loader
 def user_identity_lookup(user):
     return user
 
+# Register a callback function that loads a user from your database whenever
+# a protected route is accessed. This should return any python object on a
+# successful lookup, or None if the lookup failed for any reason (for example
+# if the user has been deleted from the database).
 @jwt.user_lookup_loader
 def user_lookup_callback(_jwt_header, jwt_data):
     identity = jwt_data["sub"]
     return models.User.query.filter_by(username=identity).one_or_none()
 
+# function toconnect to db
 def get_db_connection():
     conn = psycopg2.connect(host='localhost',
     database = 'weather-app',
     user = os.getenv('DATABASE_USERNAME'),
     password = os.getenv('DATABASE_PASSWORD'))
     return conn
+
+# get all countries
+@app.route('/api/get-countries', methods=["GET"])
+def countries():
+    countries = []
+    all_countries = models.Countries.query.all()
+    for country in all_countries:
+        countries.append({'id': country.id, 'name': country.nicename})
+    return jsonify(countries)
 
 @app.route('/api/register', methods = ['POST'])
 def register():
@@ -115,6 +124,8 @@ def login():
     access_token = create_access_token(identity = username)
     return jsonify({'token': access_token, 'user': user_data})
 
+# Protect a route with jwt_required, which will kick out requests
+# without a valid JWT present.
 @app.route("/api/user", methods=["GET"])
 @jwt_required()
 def protected():
